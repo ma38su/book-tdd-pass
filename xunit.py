@@ -1,12 +1,15 @@
-class WasRun:
+class TestCase:
     def __init__(self, name):
         self.name = name
-        self.wasRun = None
 
     def run(self):
-        self.testMethod()
         method = getattr(self, self.name)
         method()
+
+class WasRun(TestCase):
+    def __init__(self, name):
+        super().__init__(name)
+        self.wasRun = None
 
     def testMethod(self):
         self.wasRun = True
