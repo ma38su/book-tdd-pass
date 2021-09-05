@@ -17,13 +17,11 @@ class WasRun(TestCase):
 def main():
     test = WasRun("testMethod")
 
-    if test.wasRun:
-        exit(1)
+    assert(test.wasRun)
 
     test.testMethod()
 
-    if not test.wasRun:
-        exit(1)
+    assert(test.wasRun)
 
 if __name__ == '__main__':
     main()
