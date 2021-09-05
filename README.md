@@ -4,4 +4,4 @@
 
 ## References
 
-- Kent Beck著, 和田卓人訳，「テスト駆動設計」, オーム社, 2017
+- [Kent Beck著, 和田卓人訳，「テスト駆動設計」, オーム社, 2017](https://www.ohmsha.co.jp/book/9784274217883/)
