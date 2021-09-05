@@ -17,7 +17,7 @@ class WasRun(TestCase):
 def main():
     test = WasRun("testMethod")
 
-    assert(test.wasRun)
+    assert(not test.wasRun)
 
     test.testMethod()
 
