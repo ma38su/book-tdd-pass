@@ -14,6 +14,7 @@ class WasRun(TestCase):
     def setUp(self):
         self.wasRun = None
         self.wasSetUp = True
+        self.log = "setUp "
 
     def testMethod(self):
         self.wasRun = True
@@ -28,7 +29,7 @@ class TestCaseTest(TestCase):
     
     def testSetUp(self):
         self.test.run()
-        assert(self.test.wasSetUp)
+        assert("setUp " == self.test.log)
 
 if __name__ == '__main__':
     TestCaseTest("testRunning").run()
