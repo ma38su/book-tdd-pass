@@ -33,10 +33,13 @@ class TestCase:
     def run(self, result):
         result.testStarted()
 
-        self.setUp()
         try:
-            method = getattr(self, self.name)
-            method()
+            self.setUp()
+            try:
+                method = getattr(self, self.name)
+                method()
+            except:
+                result.testFailed()
         except:
             result.testFailed()
         self.tearDown()
@@ -50,10 +53,11 @@ class WasRun(TestCase):
         self.log = "setUp "
 
     def testMethod(self):
-        self.wasRun = True
         self.log += "testMethod "
+        self.wasRun = True
     
     def testBrokenMethod(self):
+        self.log += "testBrokenMethod "
         raise Exception
 
     def tearDown(self):
@@ -69,6 +73,12 @@ class TestCaseTest(TestCase):
         test = WasRun("testMethod")
         test.run(self.result)
         assert("setUp testMethod tearDown " == test.log)
+
+    def testTemplateBrokenMethod(self):
+        test = WasRun("testBrokenMethod")
+        test.run(self.result)
+        print(test.log)
+        assert("setUp testBrokenMethod tearDown " == test.log)
 
     def testResult(self):
         test = WasRun("testMethod")
@@ -95,6 +105,7 @@ class TestCaseTest(TestCase):
 if __name__ == '__main__':
     suite = TestSuite()
     suite.add(TestCaseTest("testTemplateMethod"))
+    suite.add(TestCaseTest("testTemplateBrokenMethod"))
     suite.add(TestCaseTest("testResult"))
     suite.add(TestCaseTest("testFailedFormatting"))
     suite.add(TestCaseTest("testFailedResult"))
