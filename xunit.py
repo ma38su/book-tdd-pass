@@ -38,6 +38,9 @@ class WasRun(TestCase):
     def testMethod(self):
         self.wasRun = True
         self.log += "testMethod "
+    
+    def testBrokenMethod(self):
+        raise Exception
 
     def tearDown(self):
         self.log += "tearDown "
