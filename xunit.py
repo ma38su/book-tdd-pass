@@ -2,14 +2,21 @@ class TestCase:
     def __init__(self, name):
         self.name = name
 
+    def setUp(self):
+        pass
+
     def run(self):
+        self.setUp()
         method = getattr(self, self.name)
         method()
 
 class WasRun(TestCase):
     def __init__(self, name):
-        super().__init__(name)
         self.wasRun = None
+        super().__init__(name)
+
+    def setUp(self):
+        self.wasSetUp = True
 
     def testMethod(self):
         self.wasRun = True
@@ -24,8 +31,8 @@ class TestCaseTest(TestCase):
     def testSetUp(self):
         test = WasRun("testMethod")
         test.run()
-        assert(test.wasSetup)
+        assert(test.wasSetUp)
 
 if __name__ == '__main__':
     TestCaseTest("testRunning").run()
-    TestCaseTest("testSetup").run()
+    TestCaseTest("testSetUp").run()
