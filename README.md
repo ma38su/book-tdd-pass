@@ -1,5 +1,7 @@
 # book-tdd-pass
 
+第2部 xUnit の写経
+
 ![workflow](https://github.com/ma38su/book-tdd-py/actions/workflows/action.yml/badge.svg)
 
 ## References
